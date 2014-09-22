@@ -94,7 +94,7 @@ public class DatabaseGemstoneDao extends DaoSupportAdapter<Gemstone, Long> imple
 
   @Override
   @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-  public int count() {
+  public long count() {
     return getDatabaseTemplate().queryForObject(COUNT_GEMSTONES_SQL, Integer.class);
   }
 
@@ -112,7 +112,7 @@ public class DatabaseGemstoneDao extends DaoSupportAdapter<Gemstone, Long> imple
 
   @Override
   @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-  public Gemstone save(final Gemstone gemstone) {
+  public <S extends Gemstone> S save(final S gemstone) {
     getDatabaseTemplate().update(INSERT_GEMSTONE_SQL, gemstone.getId(), gemstone.getName());
     return gemstone;
   }

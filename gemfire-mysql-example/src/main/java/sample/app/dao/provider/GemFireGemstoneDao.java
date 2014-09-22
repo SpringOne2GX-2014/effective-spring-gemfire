@@ -84,7 +84,7 @@ public class GemFireGemstoneDao extends DaoSupportAdapter<Gemstone, Long> implem
   // NOTE GemFire does not allow Region.size() within a Transactional context even when the Transaction is read-only.
   @Override
   //@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-  public int count() {
+  public long count() {
     return getGemstonesRegion().size();
   }
 
@@ -104,7 +104,7 @@ public class GemFireGemstoneDao extends DaoSupportAdapter<Gemstone, Long> implem
 
   @Override
   @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-  public Gemstone save(final Gemstone gemstone) {
+  public <S extends Gemstone> S save(final S gemstone) {
     getGemstonesTemplate().put(gemstone.getId(), gemstone.getName());
     return gemstone;
   }

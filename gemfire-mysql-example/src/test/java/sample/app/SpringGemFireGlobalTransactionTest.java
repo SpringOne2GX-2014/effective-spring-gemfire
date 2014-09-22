@@ -2,6 +2,7 @@ package sample.app;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -15,6 +16,7 @@ import sample.app.service.GemstoneService;
  * @author John Blum
  * @see org.junit.Test
  * @see org.junit.runner.RunWith
+ * @see org.springframework.test.context.ActiveProfiles
  * @see org.springframework.test.context.ContextConfiguration
  * @see org.springframework.test.context.junit4.SpringJUnit4ClassRunner
  * @see AbstractGemFireGlobalTransactionTest
@@ -23,6 +25,7 @@ import sample.app.service.GemstoneService;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
+@ActiveProfiles("repo")
 @SuppressWarnings("unused")
 public class SpringGemFireGlobalTransactionTest extends AbstractGemFireGlobalTransactionTest {
 

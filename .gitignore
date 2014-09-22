@@ -1,4 +1,6 @@
 .idea/
+lib/gemfire*
+lib/spring-gemfire-core*
 target/
 *.class
 *.iml

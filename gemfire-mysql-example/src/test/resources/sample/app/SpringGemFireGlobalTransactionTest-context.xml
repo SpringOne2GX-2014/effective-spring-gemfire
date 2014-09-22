@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:gfe="http://www.springframework.org/schema/gemfire"
+       xmlns:gfe-data="http://www.springframework.org/schema/data/gemfire"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:util="http://www.springframework.org/schema/util"
@@ -10,6 +11,7 @@
 	      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 	      http://www.springframework.org/schema/gemfire http://www.springframework.org/schema/gemfire/spring-gemfire.xsd
+	      http://www.springframework.org/schema/data/gemfire http://www.springframework.org/schema/data/gemfire/spring-data-gemfire.xsd
 	      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
 	      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 	      http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
@@ -66,7 +68,7 @@
   </gfe:cache>
 
   <gfe:replicated-region id="Gemstones" ignore-jta="false" persistent="false"
-                         key-constraint="java.lang.Long" value-constraint="java.lang.String"/>
+                         key-constraint="java.lang.Long" value-constraint="java.lang.Object"/>
 
   <!--
   <gfe:transaction-manager copy-on-read="true"/>
@@ -87,6 +89,13 @@
 
   <bean id="databaseGemstoneDao" class="sample.app.dao.provider.DatabaseGemstoneDao"/>
 
-  <bean id="gemfireGemstoneDao" class="sample.app.dao.provider.GemFireGemstoneDao"/>
+  <beans profile="dao">
+    <bean id="gemfireGemstoneDao" class="sample.app.dao.provider.GemFireGemstoneDao"/>
+  </beans>
+
+  <beans profile="repo">
+    <bean class="sample.app.dao.repo.support.GemstoneRepositoryBeanPostProcessor"/>
+    <gfe-data:repositories base-package="sample.app.dao.repo"/>
+  </beans>
 
 </beans>

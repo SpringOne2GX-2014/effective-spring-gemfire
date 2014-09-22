@@ -92,7 +92,7 @@ public class GemFireGemstoneService extends GemstoneService {
   }
 
   @Override
-  public int countFromGemFire() {
+  public long countFromGemFire() {
     /*
     return doInTransaction(new TransactionCallback<Object, Integer>() {
       @Override public Integer doInTransaction(final Object object) {

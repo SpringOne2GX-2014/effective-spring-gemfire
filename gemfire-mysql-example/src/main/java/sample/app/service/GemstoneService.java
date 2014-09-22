@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,14 +30,14 @@ import sample.app.domain.Gemstone;
 @SuppressWarnings("unused")
 public class GemstoneService {
 
-  protected static final List<String> APPROVED_GEMSTONES = new ArrayList<String>(Arrays.asList(
+  protected static final List<String> APPROVED_GEMSTONES = new ArrayList<>(Arrays.asList(
     "ALEXANDRITE", "AQUAMARINE", "DIAMOND", "OPAL", "PEARL", "RUBY", "SAPPHIRE", "SPINEL", "TOPAZ"));
 
   @Resource(name = "databaseGemstoneDao")
-  private GemstoneDao databaseGemstoneDao;
+  private CrudRepository<Gemstone, Long> databaseGemstoneDao;
 
   @Resource(name = "gemfireGemstoneDao")
-  private GemstoneDao gemfireGemstoneDao;
+  private CrudRepository<Gemstone, Long> gemfireGemstoneDao;
 
   public GemstoneService() {
   }
@@ -48,12 +49,12 @@ public class GemstoneService {
     this.gemfireGemstoneDao = gemfireGemstoneDao;
   }
 
-  protected GemstoneDao getDatabaseGemstoneDao() {
+  protected CrudRepository<Gemstone, Long> getDatabaseGemstoneDao() {
     Assert.state(databaseGemstoneDao != null, "A reference to the 'Database' GemstoneDao was not properly configured!");
     return databaseGemstoneDao;
   }
 
-  protected GemstoneDao getGemFireGemstoneDao() {
+  protected CrudRepository<Gemstone, Long> getGemFireGemstoneDao() {
     Assert.state(gemfireGemstoneDao != null , "A reference to the 'GemFire' GemstoneDao was not properly configured!");
     return gemfireGemstoneDao;
   }
@@ -66,14 +67,14 @@ public class GemstoneService {
   }
 
   @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-  public int countFromDatabase() {
+  public long countFromDatabase() {
     return getDatabaseGemstoneDao().count();
   }
 
   // NOTE GemFire does not allow Region.size() within a Transactional context even when the Transaction is read-only.
   //@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
   //@Transactional(propagation = Propagation.REQUIRED, readOnly = true, noRollbackFor = Throwable.class)
-  public int countFromGemFire() {
+  public long countFromGemFire() {
     return getGemFireGemstoneDao().count();
   }
 
@@ -91,12 +92,12 @@ public class GemstoneService {
 
   @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
   public Gemstone loadFromDatabase(final Long id) {
-    return getDatabaseGemstoneDao().findBy(id);
+    return getDatabaseGemstoneDao().findOne(id);
   }
 
   @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
   public Gemstone loadFromGemFire(final Long key) {
-    return getGemFireGemstoneDao().findBy(key);
+    return getGemFireGemstoneDao().findOne(key);
   }
 
   @Transactional(readOnly = false)

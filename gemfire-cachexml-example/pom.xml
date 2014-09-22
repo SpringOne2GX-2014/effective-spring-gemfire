@@ -33,7 +33,7 @@
     <dependency>
       <groupId>org.springone2gx.2014</groupId>
       <artifactId>spring-gemfire-core</artifactId>
-      <version>1.0.0.RELEASE</version>
+      <version>${parent.version}</version>
     </dependency>
   </dependencies>
 

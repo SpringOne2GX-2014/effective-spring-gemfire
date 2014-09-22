@@ -1,6 +1,8 @@
 package sample.app.dao.support;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The DaoSupportAdapter abstract class is a contract for Data Access Objects (DAO) specifying data access, persistence
@@ -17,7 +19,7 @@ public abstract class DaoSupportAdapter<T, ID extends Serializable> implements D
   protected static final String NOT_IMPLEMENTED = "Not Implemented!";
 
   @Override
-  public int count() {
+  public long count() {
     throw new UnsupportedOperationException(NOT_IMPLEMENTED);
   }
 
@@ -42,8 +44,57 @@ public abstract class DaoSupportAdapter<T, ID extends Serializable> implements D
   }
 
   @Override
-  public T save(final T bean) {
+  public <S extends T> S save(final S bean) {
     throw new UnsupportedOperationException(NOT_IMPLEMENTED);
+  }
+
+  @Override
+  public final <S extends T> Iterable<S> save(final Iterable<S> entities) {
+    for (S entity : entities) {
+      save(entity);
+    }
+
+    return entities;
+  }
+
+  @Override
+  public final T findOne(final ID id) {
+    return findBy(id);
+  }
+
+  @Override
+  public Iterable<T> findAll(final Iterable<ID> ids) {
+    List<T> results = new ArrayList<T>();
+
+    for (ID id : ids) {
+      results.add(findBy(id));
+    }
+
+    return results;
+  }
+
+  @Override
+  public final void delete(final ID id) {
+    remove(findBy(id));
+  }
+
+  @Override
+  public final void delete(final T entity) {
+    remove(entity);
+  }
+
+  @Override
+  public final void delete(final Iterable<? extends T> entities) {
+    for (T entity : entities) {
+      remove(entity);
+    }
+  }
+
+  @Override
+  public final void deleteAll() {
+    for (T entity : findAll()) {
+      remove(entity);
+    }
   }
 
 }

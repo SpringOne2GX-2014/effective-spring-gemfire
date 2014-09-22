@@ -68,7 +68,7 @@
     </jar>
   </target>
 
-  <target name="build-all" description="Prepares the 'effective-spring-gemfire' project examples to run."
+  <target name="build-all" description="Prepares the 'effective-spring-gemfire' project module examples to run."
           depends="refresh-lib,
                    build-gemfire-cachexml-example-dependencies-jar,
                    build-gemfire-mysql-example-dependencies-jar,
