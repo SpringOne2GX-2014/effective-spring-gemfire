@@ -21,23 +21,23 @@ at SpringOne2GX 2014 in Dallas, TX on Wednesday, September 10 at 4:30 pm CST by 
 
 The *effective-spring-gemfire* project consists of 4 modules.
 
-1. spring-gemfire-core
+* _spring-gemfire-core_
 
 This module contains source code and resources common to the other project modules.
 
-2. gemfire-cachexml-example
+* _gemfire-cachexml-example_
 
 This module demonstrates the **GemFire 7.x** and **Spring Data GemFire 1.4.x** method of launching a GemFire Server
 JVM process from _Gfsh_ bootstrapping a Spring ApplicationContext using a small snippet of GemFire `cache.xml`.
 The example also illustrates how Spring can be used to wire GemFire components declared in the `cache.xml` file.
 
-3. gemfire-springxml-example
+* _gemfire-springxml-example_
 
 This module demonstrates the **new**, preferred *GemFire 8* method of using Spring to bootstrap a GemFire Server
 in the Spring ApplicationContext's JVM process using _Gfsh's_ new `--spring-xml-location` option to the `start server`
 command.
 
-4. gemfire-mysql-example
+* _gemfire-mysql-example_
 
 This module showcases a customer case study that uses *GemFire* together with a *MySQL* database in a global (JTA-based)
 transactional context.
@@ -70,4 +70,4 @@ To build the `effective-spring-gemfire` project run...
 
 For those who attended our session, thank you.  We are open to and appreciate any honest feedback on how we can
 improve and make this type of session even more valuable next time.  Feel free to reach out to us; contact information
-is the POM file.  Thanks again!  See you next year.
+is the POM file.  Thanks again.  See you next year!

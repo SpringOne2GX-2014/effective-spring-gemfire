@@ -1,6 +1,0 @@
-CREATE DATABASE gemfire;
-
-CREATE TABLE IF NOT EXISTS gemfire.gemstones (
-  id NUMERIC(10) PRIMARY KEY,
-  stone_name VARCHAR(100) NOT NULL UNIQUE
-);
