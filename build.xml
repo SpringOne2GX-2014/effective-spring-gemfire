@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build" default="help">
+
+  <description>
+    'effective-spring-gemfire' project Ant build script for augmenting build and deployment processes.
+  </description>
+
+  <!-- project module dependency version configuration settings -->
+  <property name="spring.version" value="3.2.11.RELEASE"/>
+  <property name="spring-data-commons.version" value="1.9.0.RELEASE"/>
+  <property name="spring-data-gemfire.version" value="1.5.0.RELEASE"/>
+  <property name="slf4j.version" value="1.7.6"/>
+  <property name="slf4j-jdk14.version" value="1.7.6"/>
+  <property name="slf4j-log4j.version" value="1.7.6"/>
+  <property name="log4j.version" value="1.2.17"/>
+  <property name="aopalliance.version" value="1.0"/>
+  <property name="gemfire-cachexml-example.version" value="1.0.0.RELEASE"/>
+  <property name="gemfire-mysql-example.version" value="1.0.0.RELEASE"/>
+  <property name="gemfire-springxml-example.version" value="1.0.0.RELEASE"/>
+  <property name="spring-gemfire-core.version" value="1.0.0.RELEASE"/>
+
+  <!-- project module locations -->
+  <property name="gemfire-cachexml-example.module" location="${basedir}/gemfire-cachexml-example"/>
+  <property name="gemfire-mysql-example.module" location="${basedir}/gemfire-mysql-example"/>
+  <property name="gemfire-springxml-example.module" location="${basedir}/gemfire-springxml-example"/>
+  <property name="spring-gemfire-core.module" location="${basedir}/spring-gemfire-core"/>
+
+  <!-- project module artifacts -->
+  <property name="gemfire-cachexml-example.artifact" value="${gemfire-cachexml-example.module}/target/gemfire-cachexml-example-${gemfire-cachexml-example.version}.jar"/>
+  <property name="gemfire-mysql-example.artifact" value="${gemfire-mysql-example.module}/target/gemfire-mysql-example-${gemfire-mysql-example.version}.jar"/>
+  <property name="gemfire-springxml-example.artifact" value="${gemfire-springxml-example.module}/target/gemfire-springxml-example-${gemfire-springxml-example.version}.jar"/>
+  <property name="spring-gemfire-core.artifact" value="${spring-gemfire-core.module}/target/spring-gemfire-core-${spring-gemfire-core.version}.jar"/>
+
+  <!-- project & module directory locations -->
+  <property name="lib.dir" location="${basedir}/lib"/>
+
+  <target name="refresh-lib" description="Copies the project module artifacts into the project 'lib' directory!">
+    <copy file="${gemfire-cachexml-example.artifact}" flatten="true" force="true" overwrite="true" todir="${lib.dir}"/>
+    <copy file="${gemfire-mysql-example.artifact}" flatten="true" force="true" overwrite="true" todir="${lib.dir}"/>
+    <copy file="${gemfire-springxml-example.artifact}" flatten="true" force="true" overwrite="true" todir="${lib.dir}"/>
+    <copy file="${spring-gemfire-core.artifact}" flatten="true" force="true" overwrite="true" todir="${lib.dir}"/>
+  </target>
+
+  <target name="build-gemfire-cachexml-example-dependencies-jar">
+    <jar jarfile="${lib.dir}/gemfire-cachexml-example-dependencies.jar">
+      <manifest>
+        <attribute name="Class-Path"
+                   value="spring-core-${spring.version}.jar spring-aop-${spring.version}.jar spring-beans-${spring.version}.jar spring-context-${spring.version}.jar spring-context-support-${spring.version}.jar spring-expression-${spring.version}.jar spring-tx-${spring.version}.jar spring-data-commons-${spring-data-commons.version}.jar spring-data-gemfire-${spring-data-gemfire.version}.jar spring-gemfire-core-${spring-gemfire-core.version}.jar gemfire-cachexml-example-${gemfire-cachexml-example.version}.jar slf4j-api-${slf4j.version}.jar jcl-over-slf4j-${slf4j.version}.jar slf4j-log4j12-${slf4j-log4j.version}.jar log4j-${log4j.version}.jar aopalliance-${aopalliance.version}.jar"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="build-gemfire-mysql-example-dependencies-jar">
+    <jar jarfile="${lib.dir}/gemfire-mysql-example-dependencies.jar">
+      <manifest>
+        <attribute name="Class-Path"
+                   value="spring-data-commons-${spring-data-commons.version}.jar spring-data-gemfire-${spring-data-gemfire.version}.jar spring-gemfire-core-${spring-gemfire-core.version}.jar gemfire-mysql-example-${gemfire-mysql-example.version}.jar slf4j-api-${slf4j.version}.jar jcl-over-slf4j-${slf4j.version}.jar slf4j-log4j12-${slf4j-log4j.version}.jar log4j-${log4j.version}.jar aopalliance-${aopalliance.version}.jar"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="build-gemfire-springxml-example-dependencies-jar">
+    <jar jarfile="${lib.dir}/gemfire-springxml-example-dependencies.jar">
+      <manifest>
+        <attribute name="Class-Path"
+                   value="spring-data-commons-${spring-data-commons.version}.jar spring-data-gemfire-${spring-data-gemfire.version}.jar spring-gemfire-core-${spring-gemfire-core.version}.jar gemfire-springxml-example-${gemfire-springxml-example.version}.jar slf4j-api-${slf4j.version}.jar jcl-over-slf4j-${slf4j.version}.jar slf4j-log4j12-${slf4j-log4j.version}.jar log4j-${log4j.version}.jar aopalliance-${aopalliance.version}.jar"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="build-all" description="Prepares the 'effective-spring-gemfire' project examples to run."
+          depends="refresh-lib,
+                   build-gemfire-cachexml-example-dependencies-jar,
+                   build-gemfire-mysql-example-dependencies-jar,
+                   build-gemfire-springxml-example-dependencies-jar"/>
+
+  <target name="clean-all" description="Clean up all the project module artifacts.">
+    <delete>
+      <fileset dir="${lib.dir}">
+        <include name="gemfire-*.jar"/>
+        <include name="spring-gemfire-core-*.jar"/>
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="help" description="Prints Ant build script help information.">
+    <echo level="info">Help!</echo>
+  </target>
+
+</project>

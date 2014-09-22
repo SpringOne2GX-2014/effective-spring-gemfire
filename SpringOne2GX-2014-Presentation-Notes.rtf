@@ -1,0 +1,264 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;}
+\margl1440\margr1440\vieww20160\viewh16000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\b\fs48 \cf0 SpringOne 2GX-2014, Dallas, TX - September 8th - September 12th, 2014
+\b0\fs24 \
+\
+
+\i\fs40 Effective Application Development with GemFire using Spring Data GemFire
+\i0\fs24 \
+by John Blum (Luke Shannon)\
+\
+\
+
+\b\fs32 GemFire Overview
+\b0\fs24 \
+\
+1. 
+\b What is GemFire?
+\b0 \
+\
+* What IMDG means to GemFire...\
+* Persistence, Local/Global Transactions, WAN Replication\
+\
+2. 
+\b In-Memory
+\b0 \
+\
+* Stop-the-world Garbage Collection, GC pauses\
+* JVM Heap/GC tuning depends entirely on the application (use cases) of GemFire and access data patterns, along with the type of JVM (Sun, IBM)\
+* Serialized objects graphs (byte arrays, especially with PDX) use less memory\
+* IMDG with Off-Heap Support: GridGain\
+\
+\
+3. 
+\b In-Memory Continued\'85
+\b0 \
+\
+* 
+\i critical-heap-percentage
+\i0  - percentage of heap at which the cache is considered in danger of becoming inoperable due to garbage collection pauses or OutOfMemoryErrors.\
+* 
+\i eviction-heap-percentage
+\i0  - percentage of heap at which eviction will begin on Regions configured for HeapLRU eviction\
+\
+\
+4. 
+\b Data Grid
+\b0 \
+\
+* 
+\i Gfsh
+\i0  is similar in function to 
+\i mysql
+\i0  if using MySQL and 
+\i sqlplus
+\i0  if using Oracle\
+\
+\
+5. 
+\b Shared Nothing Architecture
+\b0 \
+\
+* \cf2 Failures in 
+\i cache
+\i0 /disks in one member do not affect the ability of another cache instance to operate safely on its disk files\
+* Continuous Availability\cf0 \
+\
+\
+6.
+\b  High Scalability
+\b0 \
+\
+* GemFire is elastic\'85 Scale-up/Scale-down as load patterns, demand changes\
+* 
+\b Collocate
+\b0  application business logic (Function(s)) with the data; data is not moved around over the network -> 
+\i locality of scale
+\i0 \
+* 
+\b Data-aware Function routing
+\b0  is more appropriate for applications requiring iteration over the data set (e.g. aggregation, querying)\
+* 
+\b Write-Behind
+\b0  data changes are (redundantly) queued in-order to avoid bottlenecks.\
+\
+* Scalability is also improved when using asynchronous, \'93write-behind\'94 of data changes to external data stores (e.g. RDBMS)\
+\
+7. 
+\b High-Throughput / Low-Latency
+\b0 \
+\
+* How does GemFire achieve high-throughput, low-latency\'85 concurrent, in-memory data structures (java.util.concurrent)\
+\
+\
+
+\b\fs32 GemFire Data Storage Model
+\b0\fs24 \
+\
+* So how does GemFire store data...\
+* Data Policy and Region Shortcuts\
+\
+\
+8. 
+\b REPLICATE vs. PARTITION
+\b0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f1 \cf0 * Oracle Coherence just refers to 
+\i Regions
+\i0  as 
+\i caches
+\f0\i0 \
+* A Region implement java.util.Map\
+* Keys are typically scalar values (Integer/Long, String), but can be objects
+\f1\fs36 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 \
+\
+9. 
+\b Region Configuration
+\b0 \
+\
+* 
+\i Time-to-Live (TTL)
+\i0  is baed on last time object was either created or updated (put)\
+* 
+\i Idle Timeout (TTI)
+\i0  is based last time object was accessed (get); resets TTL\
+* 
+\i Conflation
+\i0  only \'93latest\'94 queued value is sent for a particular key.\
+\
+\
+X. 
+\b Concurrent Updates
+\b0 \
+\
+* 
+\i concurrent updates
+\i0  is when 2 (or more) members hosting the same Replicate Region update the same key at the same time without a lock\'85\
+* due to network latency an 
+\i out-of-order update
+\i0  occurs\'85\
+* where an update from 1 member is distributed at a later time, where those members already applied a more recent update\
+\
+
+\b\fs32 GemFire Topology
+\b0\fs24 \
+\
+X. 
+\b Client/Server\
+\
+
+\b0 * GemFire partitions 
+\b Subscription Management
+\b0  (
+\i Interest Registration
+\i0  and 
+\i Continuous Queries
+\i0 ) across server data stores resulting in improvements in CPU use and bandwidth utilization thereby improving throughput and reduced latency for clients.\
+\
+* 
+\b Single-hop
+\b0  clients store metadata about bucket locations for 
+\i Partition Region
+\i0  data.\
+\
+\
+
+\b\fs32 Spring Data GemFire Overview
+\b0\fs24 \
+\
+1. Advantages of Spring Data GemFire\
+	- uses Spring's powerful, expressive programming model\
+	Integrates with:\
+	- Spring Framework's Caching Abstraction (Customer Case Study)\
+	- Spring XD\
+\
+2. Baseline\
+	- Spring Framework 4.0.7\
+	- Spring Data Commons 1.9\
+	- GemFire 7.0.2\
+	- Built/Runs on JDK 7 & 8\
+	- And when using Spring Framework 4.1, GemFire can be used as a JSR-107 caching provider\
+\
+4. Behavioral Feature Changes\
+	- Manual Start of GatewayReceivers\
+	- Region Lookup/Create (--ignore-if-exists)\
+\
+3. Convenience Features\
+	- Spring Boot Starter\
+	- GemfireTemplate \
+	- Exception Translation\
+	- Disk Store Disk Directory Location automatic creation\
+\
+4. Auto Region Lookups\
+\
+5. Region Templates\
+\
+6. Use Cases\
+	- DEMO configuration (integrate with 
+\i Gfsh
+\i0 ).\
+\
+7. Spring Data Commons 
+\i @Repository
+\i0  Abstraction\
+	- Querying (No support for Pagination/Slices although Sorting is supported, No Top/First, No Geo-spatial support)\
+	- Persisting to multiple Regions.\
+	- DEMO Cache/Global Transactions\
+\
+8. GemFire Functions\
+\
+9. Customer Case Study - CIBC\
+\
+\
+
+\b\fs32 Tips-
+\b0\fs24 \
+\
+
+\i Region.get(key)
+\i0  returns direct reference to the object\'85\
+\
+1. 
+\b Do not directly modify cached values.
+\b0  Modifying a value in place bypasses the GemFire distribution framework, including cache listeners and writers, expiration activities, and transaction management, and can produce undesired results.\
+\
+	-- Instead, make a copy of the data using 
+\i --copy-on-read
+\i0  or 
+\i CopyHelper
+\i0 .\
+\
+2. Make sure Classes used as Keys implement Object methods: 
+\i equals(:Object)
+\i0  and 
+\i hashCode()
+\i0 ;\
+\
+3. GemFire serializes data entry key and values during distribution, transfer between client/server, therefore keys/values must be serializable.\
+\
+4. Application classes must be each peer member's CLASSPATH using the data in non-serialized form.\
+\
+5. Close the Region to release the resources held\
+\
+6. Distributed System and Region configuration setting must match to be compatible systems\
+\
+7. \
+\
+\
+
+\b\fs32 General- ?
+\b0\fs24 \
+\
+* GemFire keeps data in the form given (if serialized, then serialized).\
+\
+* Can set the JVMs -XX:MaxDirectMemorySize, which is used by Socket buffers, byte buffers, etc\
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>gemfire-cachexml-example</artifactId>
+  <packaging>jar</packaging>
+
+  <parent>
+    <groupId>org.springone2gx.2014</groupId>
+    <artifactId>effective-spring-gemfire</artifactId>
+    <version>1.0.0.RELEASE</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <name>gemfire-cachexml-example</name>
+  <description>
+    Example GemFire configuration using cache.xml and Gfsh to start a GemFire Server bootstrapping a Spring ApplicationContext in the GemFire Server JVM process.
+  </description>
+  <url>http://gemfire.docs.pivotal.io/latest/userguide/index.html#about_gemfire.html</url>
+
+  <developers>
+    <developer>
+      <id>jblum</id>
+      <name>John Blum</name>
+      <email>jblum at pivotal dot io</email>
+      <organization>Pivotal Software, Inc.</organization>
+      <organizationUrl>http://www.pivotal.io</organizationUrl>
+    </developer>
+  </developers>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springone2gx.2014</groupId>
+      <artifactId>spring-gemfire-core</artifactId>
+      <version>1.0.0.RELEASE</version>
+    </dependency>
+  </dependencies>
+
+</project>

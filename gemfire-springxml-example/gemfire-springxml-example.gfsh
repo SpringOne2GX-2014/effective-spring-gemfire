@@ -1,0 +1,17 @@
+start server --name=X --disable-default-server --classpath=/Users/jblum/vmdev/springone2gx-2014/lib/gemfire-springxml-example-dependencies.jar --spring-xml-location=sample/spring/config/spring-gemfire-context-example.xml
+connect --locator=localhost[11235]
+list members
+describe member --name=X
+list regions
+describe region --name=/Example
+get --region=/Example --key=one
+get --region=/Example --key=two
+get --region=/Example --key=four
+get --region=/Example --key=eight
+get --region=/Example --key=twelve
+describe region --name=/Example
+list functions
+execute function --id=echo --arguments=Hello
+execute function --id=regionSize --arguments=/Example
+list members
+stop server --name=X

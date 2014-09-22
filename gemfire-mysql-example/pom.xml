@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>gemfire-mysql-example</artifactId>
+  <packaging>jar</packaging>
+
+  <parent>
+    <groupId>org.springone2gx.2014</groupId>
+    <artifactId>effective-spring-gemfire</artifactId>
+    <version>1.0.0.RELEASE</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <name>gemfire-mysql-example</name>
+  <description>
+    Example demonstrating GemFire and MySQL in a Global Transactional Context.
+  </description>
+  <url>http://gemfire.docs.pivotal.io/latest/userguide/index.html#developing/transactions/JTA_transactions_with_GemFire.html</url>
+
+  <developers>
+    <developer>
+      <id>jblum</id>
+      <name>John Blum</name>
+      <email>jblum at pivotal dot io</email>
+      <organization>Pivotal Software, Inc.</organization>
+      <organizationUrl>http://www.pivotal.io</organizationUrl>
+    </developer>
+  </developers>
+
+  <properties>
+    <mysql.version>5.1.32</mysql.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springone2gx.2014</groupId>
+      <artifactId>spring-gemfire-core</artifactId>
+      <version>1.0.0.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.version}</version>
+    </dependency>
+  </dependencies>
+
+</project>

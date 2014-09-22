@@ -1,0 +1,16 @@
+start server --name=X --log-level=config --disable-default-server --classpath=EFFECTIVE_SPRING_GEMFIRE/lib/gemfire-cachexml-example-dependencies.jar --cache-xml-file=./gemfire-cachexml-example/target/classes/sample/gemfire/config/cache.xml --J=-Dgemfire.jmx-manager=true --J=-Dgemfire.jmx-manager-start=true --J=-Dgemfire.jmx-manager-port=1199 --J=-Dgemfire.start-locator=localhost[11235] --J=-Dgemfire.locators=localhost[11235]
+connect --locator=localhost[11235]
+list members
+describe member --name=X
+list regions
+describe region --name=/Example
+get --region=/Example --key=one
+get --region=/Example --key=two
+get --region=/Example --key=four
+get --region=/Example --key=eight
+get --region=/Example --key=twelve
+list functions
+execute function --id=echo --arguments=Hello
+execute function --id=regionSize --arguments=/Example
+list members
+stop server --name=X
