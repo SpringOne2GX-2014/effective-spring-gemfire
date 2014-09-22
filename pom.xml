@@ -84,8 +84,11 @@
   <properties>
     <easymock.version>3.2</easymock.version>
     <gemfire.version>8.0.0</gemfire.version>
+    <java-source.version>1.7</java-source.version>
+    <java-target.version>1.7</java-target.version>
     <jmock.version>2.6.0</jmock.version>
     <junit.version>4.11</junit.version>
+    <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     <mockito.version>1.9.5</mockito.version>
     <multithreadedtc.version>1.01</multithreadedtc.version>
     <spring.version>3.2.11.RELEASE</spring.version>
@@ -297,5 +300,19 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <source>${java-source.version}</source>
+          <target>${java-target.version}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
