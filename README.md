@@ -2,19 +2,27 @@ Effective Application Development with GemFire using Spring Data GemFire
 ========================================================================
 
 This session focused on getting developers up-to-speed and productive with **Pivotal GemFire**
-by using **Spring Data GemFire**. The content is appropriate for new and experienced GemFire users alike
-and demonstrated the value of using both technologies together to develop high-throughput, low-latency
-and scalable applications efficiently and effectively.
+by using **Spring Data GemFire**.
 
-We briefly covered some of the core concepts in GemFire and then took a look at a few of the new features and tools
-in **GemFire 8**. Next, we dove into _Spring Data GemFire's_ simple, yet powerful programming model and rich feature set
-specific to _Spring Data GemFire_ for enhancing the developers experience when working with GemFire.
+The content is appropriate for new and experienced GemFire users alike and demonstrated the value of using
+both technologies together to develop high-throughput, low-latency and scalable applications efficiently
+and effectively.
 
-Finally, we reviewed some real-world case studies using actual customer use cases and problems so you can avoid
-common pitfalls just by following a few recommended practices. By sessions end, developers new to GemFire were able to
-gain an understanding for what GemFire is and does along with how to simplify their getting-started experience
-by using _Spring Data GemFire_. More experienced GemFire users took away some additional insight and recommended
-practices for being more productive and effective when working with GemFire.
+We started by covering some of GemFire's core concepts in and then took a look at a few of the new features and tools
+in **GemFire 8**.
+
+Next, we dove head first into _Spring Data GemFire's_ simple, yet powerful programming model along with it's rich
+feature set that is specific to _Spring Data GemFire_ in order to enhance the developers experience when working
+with GemFire.
+
+Finally, we reviewed a few real-world case studies looking at actual customer use cases and problems (captured in
+the project modules here) so that GemFire developers can avoid some of the common pitfalls just by following
+a few recommended practices.
+
+By sessions end, developers new to GemFire were able to gain an understanding for what GemFire is and does along with
+how to simplify their getting-started experience through _Spring Data GemFire_. More experienced GemFire users
+took away some additional insight and recommended practices for being more productive and effective when working
+with GemFire.
 
 The [Effective Application Development with GemFire using Spring Data GemFire](https://2014.event.springone2gx.com/schedule/sessions/effective_application_development_with_gemfire_and_spring_data_gemfire.html) session was presented
 at [SpringOne2GX 2014](http://www.springone2gx.com/) in _Dallas, TX_ on _Wednesday, September 10_ at _4:30 pm CST_ by _John Blum_ and _Luke Shannon_.
