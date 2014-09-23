@@ -1,15 +1,14 @@
 Bootstrapping GemFire with a Spring ApplicationContext using Gfsh
 =================================================================
 
-This is the preferred way to start a GemFire Server since this approach affords a Spring application developer
-the ability to fully configure their GemFire Server peer data node and cluster member with Spring configuration
+This example demonstrates the preferred way to start a GemFire Server given this approach affords a
+Spring application developer the ability to fully configure their GemFire Server with Spring configuration
 meta-data, which is far superior to GemFire's native `cache.xml` format.
 
-Not only is the Spring configuration meta-data more powerful, it immediately enables the application developer
+Not only is Spring configuration meta-data more robust, it immediately enables a Spring application developer
 with the full power of **Spring**, giving the application developer a consistent and powerful programming model
-along with the ability to integrate with any of the other Spring platform ecosystem and technologies
-(e.g. *Spring Batch*, *Spring Integration*, *Spring Data*, *Spring XD*, *Spring Boot*, *Reactor*, *Spring Security*,
-you name it).
+along with the ability to integrate with any of the other Spring Platform ecosystem technologies (e.g. *Spring Boot*,
+*Spring Security*, *Spring Data*, *Spring Integration*, *Spring Batch*, *Spring XD*, *Reactor* and so on).
 
 This example is far simpler than the previous example illustrated in the `gemfire-cachexml-example` project module.
 
@@ -17,10 +16,10 @@ This example is far simpler than the previous example illustrated in the `gemfir
 
 To run the example, you will need...
 
-1. Install JDK 1.6 or 1.7 (preferably 1.7).
-2. Set JAVA_HOME to the JDK installation; add $JAVA_HOME/bin to your $PATH.
-3. Install GemFire 8.
-4. Set $GEMFIRE and $GEMFIRE_HOME to GemFire installed location; add $GEMFIRE_HOME/bin to your $PATH.
+1. Install [JDK 1.7](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
+2. Set `JAVA_HOME` to the JDK 7 installation directory; include $JAVA_HOME/bin in your $PATH if necessary.
+3. Install [GemFire 8](https://network.pivotal.io/products/pivotal-gemfire).
+4. Set `GEMFIRE` to the *GemFire 8* installation directory; include $GEMFIRE/bin in your $PATH.
 5. Launch `gfsh` and follow the recorded session below...
 
 # Session
@@ -210,15 +209,17 @@ Note, however, you still need to include your application classes (e.g. `NamedNu
 
 # Dependency JAR Files
 
-You may have noticed that these examples used a Manifest-only JAR file, which only contains a META-INF/MANIFEST.MF file
-with a `Class-Path` Manifest Header indicating the JAR files necessary to run the application.
+You may have noticed that these examples used a Manifest-only JAR file to specify an application's dependencies.
 
-These Manifest-only JAR files are the...
+A Manifest-only JAR file is a JAR file that  only contains a META-INF/MANIFEST.MF file with
+a `Class-Path` Manifest Header indicating the JAR files necessary to run the application.
+
+These Manifest-only, dependency-based JAR files are the...
 
 `gemfire-cachexml-example-dependencies.jar`
 `gemfire-springxml-example-dependencies.jar`
 
-... files respectively.  If you crack them open, e.g. ...
+... files respectively.  If you crack one open, e.g. ...
 
 ```
 $jar -xvf lib/gemfire-cachexml-example-dependencies.jar META-INF/MANIFEST.MF
@@ -229,5 +230,4 @@ $less META-INF/MANIFEST.MF
 ... and compare their contents, namely the `Class-Path` Manifest header, you will notice the difference.
 
 The `Class-Path` Manifest header references JAR files in the `~/effective-spring-gemfire/lib` relative to
-the Manifest-only Dependency-based JAR files (i.e. the `./lib` directory).
-
+the Manifest-only, dependency-based JAR files (i.e. the `./lib` directory).
