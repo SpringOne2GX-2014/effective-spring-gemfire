@@ -8,12 +8,11 @@ The content is appropriate for new and experienced GemFire users alike and demon
 both technologies together to develop high-throughput, low-latency and scalable applications efficiently
 and effectively.
 
-We started by covering some of GemFire's core concepts in and then took a look at a few of the new features and tools
+We started by covering some of GemFire's core concepts and then took a look at a few of the new features and tools
 in **GemFire 8**.
 
 Next, we dove head first into _Spring Data GemFire's_ simple, yet powerful programming model along with it's rich
-feature set that is specific to _Spring Data GemFire_ in order to enhance the developers experience when working
-with GemFire.
+feature set, specific to _Spring Data GemFire_, in order to enhance the developers experience when working with GemFire.
 
 Finally, we reviewed a few real-world case studies looking at actual customer use cases and problems (captured in
 the project modules here) so that GemFire developers can avoid some of the common pitfalls just by following
