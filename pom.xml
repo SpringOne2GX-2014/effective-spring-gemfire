@@ -77,8 +77,7 @@
   <scm>
     <url>https://github.com/SpringOne2GX-2014/effective-spring-gemfire.git</url>
     <connection>scm:git:git://github.com/SpringOne2GX-2014/effective-spring-gemfire.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com:SpringOne2GX-2014/effective-spring-gemfire.git
-    </developerConnection>
+    <developerConnection>scm:git:ssh://git@github.com:SpringOne2GX-2014/effective-spring-gemfire.git</developerConnection>
   </scm>
 
   <properties>
