@@ -4,3 +4,4 @@ lib/spring-gemfire-core*
 target/
 *.class
 *.iml
+.DS_Store
